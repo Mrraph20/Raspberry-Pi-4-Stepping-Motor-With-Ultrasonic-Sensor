@@ -30,7 +30,6 @@ void moveOnePeriod(int dir,int ms){
     }
 }
 
-
 void moveSteps(int dir, int ms, int steps){  // Motor: Continuous rotation function, 
     int i;                                     // the parameter steps specifies the rotation cycles, every four steps is a cycle
     for(i=0;i<steps;i++){
@@ -88,8 +87,8 @@ int main(){
     int i;
     
     float distance = 0;
-    pinMode(trigPin,OUTPUT);
-    pinMode(echoPin,INPUT);
+    //pinMode(trigPin,OUTPUT);
+    //pinMode(echoPin,INPUT);
     for(i=0;i<4;i++){
         pinMode(motorPins[i],OUTPUT);
         
