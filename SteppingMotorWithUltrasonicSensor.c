@@ -8,7 +8,7 @@
 #define MAX_DISTANCE 220        // Define the maximum measured distance
 #define timeOut MAX_DISTANCE*60 // Calculate timeout according to the maximum measured distance
 
-const int motorPins[]={1,0,2,6};  // GPIO 18,17,21,25 // Define pins connected to four phase ABCD of stepper motor 
+const int motorPins[]={1,0,4,6};  // GPIO 18,17,23,25 // Define pins connected to four phase ABCD of stepper motor 
 const int CCWStep[]={0x01,0x02,0x04,0x08};  // Define power supply order for coil for rotating anticlockwise 
 const int CWStep[]={0x08,0x04,0x02,0x01};   // Define power supply order for coil for rotating clockwise
 
