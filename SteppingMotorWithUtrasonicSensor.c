@@ -1,6 +1,12 @@
 
 #include <stdio.h>
 #include <wiringPi.h>
+#include <sys/time.h>
+
+#define trigPin 4       
+#define echoPin 5
+#define MAX_DISTANCE 220        // Define the maximum measured distance
+#define timeOut MAX_DISTANCE*60 // Calculate timeout according to the maximum measured distance
 
 const int motorPins[]={1,4,5,6};            // Define pins connected to four phase ABCD of stepper motor 
 const int CCWStep[]={0x01,0x02,0x04,0x08};  // Define power supply order for coil for rotating anticlockwise 
@@ -25,37 +31,78 @@ void moveOnePeriod(int dir,int ms){
 }
 
 
-void moveSteps(int dir, int ms, int steps){  // Continuous rotation function, 
+void moveSteps(int dir, int ms, int steps){  // Motor: Continuous rotation function, 
     int i;                                     // the parameter steps specifies the rotation cycles, every four steps is a cycle
     for(i=0;i<steps;i++){
         moveOnePeriod(dir,ms);
     }
 }
 
-void motorStop(){  // Function used to stop rotating
+void motorStop(){  // Motor: Function used to stop rotating
     int i;
     for(i=0;i<4;i++){
         digitalWrite(motorPins[i],LOW);
     }   
 }
 
-int main(void){
-    int i;
+float getSonar(){   // Sensor: Get the measurement result of ultrasonic module with unit: cm
+    long pingTime;
+    float distance;
+    digitalWrite(trigPin,HIGH); // Send 10us high level to trigPin 
+    delayMicroseconds(10);
+    digitalWrite(trigPin,LOW);
+    pingTime = pulseIn(echoPin,HIGH,timeOut);   // Read plus time of echoPin
+    distance = (float)pingTime * 340.0 / 2.0 / 10000.0; // Calculate distance with sound speed 340m/s
+    return distance;
+}
 
-    printf("Stepping motor is initializing.\n");
+int pulseIn(int pin, int level, int timeout)  // Sensor: Function pulseIn: obtain pulse time of a pin
+{
+   struct timeval tn, t0, t1;
+   long micros;
+   gettimeofday(&t0, NULL);
+   micros = 0;
+   while (digitalRead(pin) != level)
+   {
+      gettimeofday(&tn, NULL);
+      if (tn.tv_sec > t0.tv_sec) micros = 1000000L; else micros = 0;
+      micros += (tn.tv_usec - t0.tv_usec);
+      if (micros > timeout) return 0;
+   }
+   gettimeofday(&t1, NULL);
+   while (digitalRead(pin) == level)
+   {
+      gettimeofday(&tn, NULL);
+      if (tn.tv_sec > t0.tv_sec) micros = 1000000L; else micros = 0;
+      micros = micros + (tn.tv_usec - t0.tv_usec);
+      if (micros > timeout) return 0;
+   }
+   if (tn.tv_sec > t1.tv_sec) micros = 1000000L; else micros = 0;
+   micros = micros + (tn.tv_usec - t1.tv_usec);
+   return micros;
+}
 
+int main(){
+    printf("Stepping motor and sensor are initializing.\n");
     wiringPiSetup();
+    int i;
     
+    float distance = 0;
+    pinMode(trigPin,OUTPUT);
+    pinMode(echoPin,INPUT);
     for(i=0;i<4;i++){
         pinMode(motorPins[i],OUTPUT);
-    } 
-
+        
     while(1){
+        distance = getSonar();
+        printf("The distance is : %.2f cm\n",distance);
+        delay(1000);
+    
         moveSteps(1,3,512);  // Rotating 360° clockwise, a total of 2048 steps in a circle, namely, 512 cycles.
         delay(500);
         moveSteps(0,3,512);  // Rotating 360° anticlockwise
         delay(500);
     }
-    return 0;
+        return 0;
+    }
 }
-
