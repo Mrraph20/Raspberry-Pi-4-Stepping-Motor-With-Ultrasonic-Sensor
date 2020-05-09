@@ -1,8 +1,8 @@
 /*
 Made by: Christopher Milian 
-Purpose: To control Stepping Motor Rotation Direction with Ultrasonic Sensor
+Purpose: To Stop a Stepping Motor with Distance from an Ultrasonic Sensor
 Started: 5/8/2020
-Completed: 
+Completed: 5/9/2020
 */
 
 #include <stdio.h>
