@@ -116,7 +116,7 @@ int main(){
             moveOnePeriod(1,3);
         }
         else{                //Motor stops
-            motorStop()
+            motorStop();
         }
     }
     return 0;
