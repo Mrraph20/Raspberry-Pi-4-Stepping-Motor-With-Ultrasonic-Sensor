@@ -34,13 +34,6 @@ void moveOnePeriod(int dir,int ms){  // Motor: For four phase step motor, four s
     }
 }
 // Movement
-void moveSteps(int dir, int ms, int steps){  // Motor: Continuous rotation function, 
-    int i;                                     // the parameter steps specifies the rotation cycles, every four steps is a cycle
-    for(i=0;i<steps;i++){
-        moveOnePeriod(dir,ms);
-    }
-}
-// Movement
 void motorStop(){  // Motor: Function used to stop rotating
     int i;
     for(i=0;i<4;i++){
@@ -98,30 +91,18 @@ int main(){
 
     printf("Stepping motor and sensor are initializing.\n");
 
-    /*
     while(1){
-        distance = getSonar();
-        printf("The distance is : %.2f cm\n",distance);
-    
-        moveSteps(1,3,512);  // Rotating 360° clockwise, a total of 2048 steps in a circle, namely, 512 cycles. 2048/4 = 512
-        delay(500);
-        moveSteps(0,3,512);  // Rotating 360° anticlockwise
-        delay(500);
-    }
-    */
 
-    while(1){
-        
         distance = getSonar();
-        if ((distance < 20) && (distance > 0)){  //Motor stops
+        if ((distance < 20) && (distance > 0)){  // Motor stops
             printf("The distance is : %.2f cm\n",distance);
             printf("Too close, stopping motor.\n");
             motorStop();
         }
-        else{                //Motor goes clockwise
+        else{  // Motor goes clockwise
             printf("The distance is : %.2f cm\n",distance);
             printf("Good distance, resuming motor.\n");
-            moveOnePeriod(1,3);
+            moveOnePeriod(0,3);
         }
     }
     return 0;

@@ -2,8 +2,7 @@
 
 ###### This project is not complete yet. Repo set up for file transfer convenience. 
 
-A project based on C that uses a Raspberry Pi 4B Rev. 1.2 board to make a stepping motor rotate
-clockwise or counterclockwise depending on the distance calculated from the ultrasonic sensor. 
+A project based on C that uses a Raspberry Pi 4B Rev. 1.2 board to make a stepping motor move clockwise or stop entirely depending on the distance calculated from the ultrasonic sensor. 
 For GPIO pin mapping, I used WiringPi (Made by Gordon Henderson under GNU-LGPL) to simplify. 
 Link: http://wiringpi.com/
 
