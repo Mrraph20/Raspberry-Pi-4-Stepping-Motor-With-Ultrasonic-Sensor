@@ -1,3 +1,9 @@
+/*
+Made by: Christopher Milian 
+Purpose: To control Stepping Motor Rotation with Ultrasonic Sensor
+Started: 5/8/2020
+Completed: 
+*/
 
 #include <stdio.h>
 #include <wiringPi.h>
