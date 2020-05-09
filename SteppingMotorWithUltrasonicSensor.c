@@ -3,12 +3,12 @@
 #include <wiringPi.h>
 #include <sys/time.h>
 
-#define trigPin 4       
-#define echoPin 5
+#define trigPin 0  // GPIO 17      
+#define echoPin 2  //GPIO 21
 #define MAX_DISTANCE 220        // Define the maximum measured distance
 #define timeOut MAX_DISTANCE*60 // Calculate timeout according to the maximum measured distance
 
-const int motorPins[]={1,4,5,6};            // Define pins connected to four phase ABCD of stepper motor 
+const int motorPins[]={1,4,5,6};  // GPIO 18,23,24,25 // Define pins connected to four phase ABCD of stepper motor 
 const int CCWStep[]={0x01,0x02,0x04,0x08};  // Define power supply order for coil for rotating anticlockwise 
 const int CWStep[]={0x08,0x04,0x02,0x01};   // Define power supply order for coil for rotating clockwise
 
@@ -87,20 +87,20 @@ int main(){
     int i;
     
     float distance = 0;
-    //pinMode(trigPin,OUTPUT);
-    //pinMode(echoPin,INPUT);
+    pinMode(trigPin,OUTPUT); 
+    pinMode(echoPin,INPUT);
     for(i=0;i<4;i++){
         pinMode(motorPins[i],OUTPUT);
         
     while(1){
-        //distance = getSonar();
-        //printf("The distance is : %.2f cm\n",distance);
-        //delay(1000);
+        distance = getSonar();
+        printf("The distance is : %.2f cm\n",distance);
+        delay(1000);
     
         moveSteps(1,3,512);  // Rotating 360° clockwise, a total of 2048 steps in a circle, namely, 512 cycles.
-        delay(500);
+        delay(1000);
         moveSteps(0,3,512);  // Rotating 360° anticlockwise
-        delay(500);
+        delay(1000);
     }
         return 0;
     }
