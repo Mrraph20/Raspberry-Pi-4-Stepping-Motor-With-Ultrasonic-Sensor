@@ -31,6 +31,10 @@ Hardware components used:
 - Raspberry Pi 4B Rev. 1.2
 
 A 9V battery can also be used with the power supply board if an adapter is obtained.
+For the ultrasonic sensor, I used the 5V pin from the Pi to VCC, GPIO 23 for Trig, GPIO 24 for Echo, and the GND pin on the Pi for GND. 
+
+##### About the pin usage in the code.
+I used GPIO 23 for both components since in the code I have that pin as OUTPUT for both components to use.  
 
 When compiling the code, run the following commands in terminal at the location of the file:
 ```

@@ -9,8 +9,8 @@ Completed: 5/9/2020
 #include <wiringPi.h>
 #include <sys/time.h>
 
-#define trigPin 4 // GPIO 23      
-#define echoPin 5  //GPIO 24
+#define trigPin 4  // GPIO 23      
+#define echoPin 5  // GPIO 24
 #define MAX_DISTANCE 220        // Define the maximum measured distance
 #define timeOut MAX_DISTANCE*60 // Calculate timeout according to the maximum measured distance
 
