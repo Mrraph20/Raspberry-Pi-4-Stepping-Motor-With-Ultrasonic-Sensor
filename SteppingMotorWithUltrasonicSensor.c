@@ -96,12 +96,12 @@ int main(){
         distance = getSonar();
         if ((distance < 20) && (distance > 0)){  // Motor stops
             printf("The distance is : %.2f cm\n",distance);
-            printf("Too close, stopping motor.\n");
+            printf("Too close, stopping motor.\n\n");
             motorStop();
         }
         else{  // Motor goes clounterclockwise
             printf("The distance is : %.2f cm\n",distance);
-            printf("Good distance, resuming motor.\n");
+            printf("Good distance, resuming motor.\n\n");
             moveOnePeriod(1,3);
         }
     }
