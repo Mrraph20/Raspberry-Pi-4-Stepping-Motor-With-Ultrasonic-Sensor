@@ -8,6 +8,19 @@ For GPIO pin mapping, I used WiringPi (Made by Gordon Henderson under GNU-LGPL) 
 Link: http://wiringpi.com/
 
 **WiringPi Note: The author has discontinued public releases of WiringPi. The last update was 2.52 for the Raspberry Pi 4B.** 
+Although WiringPi is preinstalled on Raspbian systems, the code for installation is as follows:
+```
+sudo apt-get install wiringpi
+```
+Use:
+```
+gpio -v
+```
+to check if your version is 2.52.
+
+For more details visit http://wiringpi.com/download-and-install/
+
+To upgrade, visit http://wiringpi.com/wiringpi-updated-to-2-52-for-the-raspberry-pi-4b/
 
 Hardware components used:
 - (1) 4 pin Ultrasonic Sensor 5VDC (HC-SR04) 
