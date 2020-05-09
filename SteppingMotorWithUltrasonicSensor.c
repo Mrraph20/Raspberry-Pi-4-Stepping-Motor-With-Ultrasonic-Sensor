@@ -99,10 +99,10 @@ int main(){
             printf("Too close, stopping motor.\n");
             motorStop();
         }
-        else{  // Motor goes clockwise
+        else{  // Motor goes clounterclockwise
             printf("The distance is : %.2f cm\n",distance);
             printf("Good distance, resuming motor.\n");
-            moveOnePeriod(0,3);
+            moveOnePeriod(1,3);
         }
     }
     return 0;
