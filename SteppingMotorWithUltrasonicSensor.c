@@ -45,17 +45,6 @@ void motorStop(){  // Motor: Function used to stop rotating
     }   
 }
 
-float getSonar(){   // Sensor: Get the measurement result of ultrasonic module with unit: cm
-    long pingTime;
-    float distance;
-    digitalWrite(trigPin,HIGH); // Send 10us high level to trigPin 
-    delayMicroseconds(10);
-    digitalWrite(trigPin,LOW);
-    pingTime = pulseIn(echoPin,HIGH,timeOut);   // Read plus time of echoPin
-    distance = (float)pingTime * 340.0 / 2.0 / 10000.0; // Calculate distance with sound speed 340m/s
-    return distance;
-}
-
 int pulseIn(int pin, int level, int timeout)  // Sensor: Function pulseIn: obtain pulse time of a pin
 {
    struct timeval tn, t0, t1;
@@ -80,6 +69,17 @@ int pulseIn(int pin, int level, int timeout)  // Sensor: Function pulseIn: obtai
    if (tn.tv_sec > t1.tv_sec) micros = 1000000L; else micros = 0;
    micros = micros + (tn.tv_usec - t1.tv_usec);
    return micros;
+}
+
+float getSonar(){   // Sensor: Get the measurement result of ultrasonic module with unit: cm
+    long pingTime;
+    float distance;
+    digitalWrite(trigPin,HIGH); // Send 10us high level to trigPin 
+    delayMicroseconds(10);
+    digitalWrite(trigPin,LOW);
+    pingTime = pulseIn(echoPin,HIGH,timeOut);   // Read plus time of echoPin
+    distance = (float)pingTime * 340.0 / 2.0 / 10000.0; // Calculate distance with sound speed 340m/s
+    return distance;
 }
 
 int main(){
