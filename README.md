@@ -30,6 +30,8 @@ Hardware components used:
 - (1) 12V 2.5A AC Adapter (Used for the breadboard power supply)
 - Raspberry Pi 4B Rev. 1.2
 
+A 9V battery can also be used with the power supply board if an adapter is obtained.
+
 When compiling the code, run the following commands in terminal at the location of the file:
 ```
 sudo bash
