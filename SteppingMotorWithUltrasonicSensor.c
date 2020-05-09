@@ -99,12 +99,11 @@ int main(){
     while(1){
         distance = getSonar();
         printf("The distance is : %.2f cm\n",distance);
-        delay(500);
     
         moveSteps(1,3,512);  // Rotating 360° clockwise, a total of 2048 steps in a circle, namely, 512 cycles. 2048/4 = 512
-        delay(1000);
+        delay(500);
         moveSteps(0,3,512);  // Rotating 360° anticlockwise
-        delay(1000);
+        delay(500);
     }
     return 0;
 }
