@@ -112,11 +112,13 @@ int main(){
 
     while(1){
 
-        if (distance < 20){  //Motor stops
+        if ((distance < 20) && (distance > 0)){  //Motor stops
+            printf("The distance is : %.2f cm\n",distance);
             printf("Too close, stopping motor.\n");
             motorStop();
         }
         else{                //Motor goes clockwise
+            printf("The distance is : %.2f cm\n",distance);
             printf("Good distance, resuming motor.\n");
             moveOnePeriod(1,3);
         }
