@@ -112,11 +112,11 @@ int main(){
 
     while(1){
 
-        if (distance < 20){  //Motor goes clockwise
-            moveOnePeriod(1,3);
-        }
-        else{                //Motor stops
+        if (distance < 20){  //Motor stops
             motorStop();
+        }
+        else{                //Motor goes clockwise
+            moveOnePeriod(1,3);
         }
     }
     return 0;
