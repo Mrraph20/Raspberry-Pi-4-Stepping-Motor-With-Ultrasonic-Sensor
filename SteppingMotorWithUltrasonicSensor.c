@@ -94,9 +94,9 @@ int main(){
         pinMode(motorPins[i],OUTPUT);
         
     while(1){
-        distance = getSonar();
-        printf("The distance is : %.2f cm\n",distance);
-        delay(1000);
+        //distance = getSonar();
+        //printf("The distance is : %.2f cm\n",distance);
+        //delay(1000);
     
         moveSteps(1,3,512);  // Rotating 360° clockwise, a total of 2048 steps in a circle, namely, 512 cycles.
         delay(500);
