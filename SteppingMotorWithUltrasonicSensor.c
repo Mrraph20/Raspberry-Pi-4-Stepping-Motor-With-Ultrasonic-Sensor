@@ -97,7 +97,7 @@ int main(){
     pinMode(echoPin,INPUT);
     for(i=0;i<4;i++){
         pinMode(motorPins[i],OUTPUT);
-        
+    }   
     while(1){
         distance = getSonar();
         printf("The distance is : %.2f cm\n",distance);
@@ -108,6 +108,5 @@ int main(){
         moveSteps(0,3,512);  // Rotating 360° anticlockwise
         delay(1000);
     }
-        return 0;
-    }
+    return 0;
 }
