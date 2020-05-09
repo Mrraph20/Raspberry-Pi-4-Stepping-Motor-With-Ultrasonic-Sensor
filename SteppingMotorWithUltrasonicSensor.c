@@ -111,7 +111,8 @@ int main(){
     */
 
     while(1){
-
+        
+        distance = getSonar();
         if ((distance < 20) && (distance > 0)){  //Motor stops
             printf("The distance is : %.2f cm\n",distance);
             printf("Too close, stopping motor.\n");
